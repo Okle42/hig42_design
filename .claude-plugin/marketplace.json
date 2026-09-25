@@ -1,0 +1,29 @@
+{
+  "name": "okle42",
+  "description": "Okle42 — AI tools that ship. First plugin: hig42-design, evidence-based design guidelines for Apple platforms (English + Traditional Chinese).",
+  "owner": {
+    "name": "Okle42"
+  },
+  "plugins": [
+    {
+      "name": "hig42-design",
+      "description": "Build and review SwiftUI / AppKit / UIKit interfaces and Apple-style web pages against the current Human Interface Guidelines, including Liquid Glass, with verified values and pitfalls.",
+      "author": {
+        "name": "Okle42"
+      },
+      "source": "./plugins/hig42-design",
+      "category": "development",
+      "homepage": "https://github.com/Okle42/hig42_design"
+    },
+    {
+      "name": "hig42-design-zh-tw",
+      "description": "繁體中文版：依最新 Apple 平台設計規範（含 Liquid Glass）製作與審查 SwiftUI／AppKit／UIKit 介面與 Apple 風網頁，附 Apple 官方繁中介面用語。",
+      "author": {
+        "name": "Okle42"
+      },
+      "source": "./plugins/hig42-design-zh-tw",
+      "category": "development",
+      "homepage": "https://github.com/Okle42/hig42_design"
+    }
+  ]
+}

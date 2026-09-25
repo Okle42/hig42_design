@@ -1,0 +1,367 @@
+/* =====================================================================
+   apple-web-base.css — Apple 風格網頁基底（hig42-design skill）
+   用法：
+     <html lang="zh-Hant-TW">
+     <meta name="color-scheme" content="light dark">
+     App 風（工具頁／儀表板）：<body class="app">；Mac 風再加 data-platform="mac"
+     行銷風（產品頁）：<body class="mk">
+   數值來源：[HIG] 官方色表／HIG；[iOS] iOS 26.5 模擬器實測；[mac] macOS 27 NSColor 實測；
+            [apple.com] 2026-09 實測 apple.com CSS；[F7] Framework7 9.1.3；[推論] 自行推得
+   注意：系統色為 iOS 26／macOS 26 起的值（藍 #0088FF）。要做「經典」iOS 18 以前外觀，
+        把 --blue 換回 #007AFF／#0A84FF。
+   ===================================================================== */
+
+:root {
+  color-scheme: light dark;
+
+  /* ---------- 字型 ---------- */
+  --font-text: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text", "Segoe UI",
+               "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui,
+               "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --font-rounded: ui-rounded, "SF Pro Rounded", var(--font-text);
+
+  /* ---------- 系統色 [HIG 2025 表] ---------- */
+  --red: #FF383C;  --orange: #FF8D28;  --yellow: #FFCC00;  --green: #34C759;
+  --mint: #00C8B3; --teal: #00C3D0;    --cyan: #00C0E8;    --blue: #0088FF;
+  --indigo: #6155F5; --purple: #CB30E0; --pink: #FF2D55;   --brown: #AC7F5E;
+  --gray: #8E8E93; --gray2: #AEAEB2; --gray3: #C7C7CC; --gray4: #D1D1D6; --gray5: #E5E5EA; --gray6: #F2F2F7;
+
+  /* ---------- App 語意色（iOS 風）[iOS] ---------- */
+  --label:   #000000;
+  --label-2: rgba(60, 60, 67, .60);   /* 淺色對白只有 3.44:1，不放關鍵小字 */
+  --label-3: rgba(60, 60, 67, .30);
+  --label-4: rgba(60, 60, 67, .18);
+  --separator: rgba(60, 60, 67, .12);
+  --separator-opaque: #C6C6C8;
+  --fill:   rgba(120, 120, 128, .20);
+  --fill-2: rgba(120, 120, 128, .16);
+  --fill-3: rgba(118, 118, 128, .12);
+  --fill-4: rgba(116, 116, 128, .08);
+  --bg:          #FFFFFF;             /* systemBackground */
+  --bg-2:        #F2F2F7;             /* secondarySystemBackground */
+  --bg-grouped:  #F2F2F7;             /* systemGroupedBackground */
+  --bg-cell:     #FFFFFF;             /* secondarySystemGroupedBackground */
+  --accent:      var(--blue);         /* 填色、圖示、大字用 */
+  --link:        #0066CC;             /* 小字連結（取 apple.com 連結色，深色 #2997FF）：5.57:1。#0088FF 只有 3.52:1；iOS 原生 link 是 #007AFF／#0984FF */
+  --on-accent:   #FFFFFF;
+  --selection:   #0064E1;             /* [mac] selectedContentBackgroundColor */
+  --switch-on:   var(--green);
+  --seg-thumb:   #FFFFFF;
+
+  /* ---------- 行銷色 [apple.com] ---------- */
+  --mk-bg: #FFFFFF; --mk-bg-alt: #F5F5F7;
+  --mk-text: #1D1D1F; --mk-text-2: #6E6E73; --mk-text-3: #86868B;
+  --mk-link: #0066CC; --mk-btn: #0071E3; --mk-btn-hover: #0076DF; --mk-btn-active: #006EDB;
+  --mk-border: #D2D2D7;
+
+  /* ---------- 材質 [apple.com globalnav] ---------- */
+  --glass-bg:       rgba(250, 250, 252, .80);
+  --glass-bg-solid: rgba(250, 250, 252, .92);
+  --glass-filter:   saturate(180%) blur(20px);
+
+  /* ---------- 形狀 [apple.com／F7／推論] ---------- */
+  --r-pill: 980px;
+  --r-group: 12px;     /* 經典 iOS 10、iOS 26 約 24；網頁工具頁取中 [推論] */
+  --r-card: 18px;
+  --r-control: 8px;
+  --r-small: 6px;
+
+  /* ---------- 版面 ---------- */
+  --gutter: 16px;
+  --content-w: 980px;        /* [apple.com] */
+  --section-pad: 160px;      /* [apple.com] */
+  --read-w: 680px;           /* 長文最大寬 [推論] */
+
+  /* ---------- 動態 ---------- */
+  --ease-apple: cubic-bezier(.4, 0, .6, 1);     /* [apple.com] 最常用 */
+  --ease-out:   cubic-bezier(.25, .1, .3, 1);   /* [apple.com] */
+  --ease-spring: var(--ease-out);               /* linear() 不支援時的回退 */
+  --dur-fast: 200ms; --dur-base: 320ms; --dur-panel: 450ms;
+}
+@supports (transition-timing-function: linear(0, 1)) {
+  /* SwiftUI 預設 .spring／.smooth（duration .5、bounce 0，臨界阻尼無回彈）取樣近似 [推論] */
+  :root { --ease-spring: linear(0, 0.068 5%, 0.208 10%, 0.362 15%, 0.504 20%, 0.624 25%, 0.720 30%, 0.795 35%, 0.851 40%, 0.893 45%, 0.924 50%, 0.946 55%, 0.962 60%, 0.973 65%, 0.981 70%, 0.987 75%, 0.991 80%, 0.994 85%, 0.996 90%, 0.997 95%, 1); }
+}
+
+/* ---------- 深色：跟系統；:root[data-theme] 可手動覆寫 ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --red: #FF4245; --orange: #FF9230; --yellow: #FFD600; --green: #30D158;
+    --mint: #00DAC3; --teal: #00D2E0; --cyan: #3CD3FE; --blue: #0091FF;
+    --indigo: #6D7CFF; --purple: #DB34F2; --pink: #FF375F; --brown: #B78A66;
+    --gray2: #636366; --gray3: #48484A; --gray4: #3A3A3C; --gray5: #2C2C2E; --gray6: #1C1C1E;
+    --label: #FFFFFF; --label-2: rgba(235,235,245,.60); --label-3: rgba(235,235,245,.30); --label-4: rgba(235,235,245,.16);
+    --separator: rgba(84,84,88,.50); --separator-opaque: #38383A;
+    --fill: rgba(120,120,128,.36); --fill-2: rgba(120,120,128,.32); --fill-3: rgba(118,118,128,.24); --fill-4: rgba(118,118,128,.18);
+    --bg: #000000; --bg-2: #1C1C1E; --bg-grouped: #000000; --bg-cell: #1C1C1E;
+    --link: #2997FF; --selection: #0059D1; --seg-thumb: #636366;
+    --mk-bg: #000000; --mk-bg-alt: #1D1D1F; --mk-text: #F5F5F7; --mk-text-2: #86868B; --mk-text-3: #6E6E73;
+    --mk-link: #2997FF; --mk-border: #424245;
+    --glass-bg: rgba(22,22,23,.80); --glass-bg-solid: rgba(22,22,23,.88);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --red: #FF4245; --orange: #FF9230; --yellow: #FFD600; --green: #30D158;
+  --mint: #00DAC3; --teal: #00D2E0; --cyan: #3CD3FE; --blue: #0091FF;
+  --indigo: #6D7CFF; --purple: #DB34F2; --pink: #FF375F; --brown: #B78A66;
+  --gray2: #636366; --gray3: #48484A; --gray4: #3A3A3C; --gray5: #2C2C2E; --gray6: #1C1C1E;
+  --label: #FFFFFF; --label-2: rgba(235,235,245,.60); --label-3: rgba(235,235,245,.30); --label-4: rgba(235,235,245,.16);
+  --separator: rgba(84,84,88,.50); --separator-opaque: #38383A;
+  --fill: rgba(120,120,128,.36); --fill-2: rgba(120,120,128,.32); --fill-3: rgba(118,118,128,.24); --fill-4: rgba(118,118,128,.18);
+  --bg: #000000; --bg-2: #1C1C1E; --bg-grouped: #000000; --bg-cell: #1C1C1E;
+  --link: #2997FF; --selection: #0059D1; --seg-thumb: #636366;
+  --mk-bg: #000000; --mk-bg-alt: #1D1D1F; --mk-text: #F5F5F7; --mk-text-2: #86868B; --mk-text-3: #6E6E73;
+  --mk-link: #2997FF; --mk-border: #424245;
+  --glass-bg: rgba(22,22,23,.80); --glass-bg-solid: rgba(22,22,23,.88);
+}
+:root[data-theme="light"] { color-scheme: light; }
+
+/* ---------- Mac 風覆寫 [mac]：label 黑白+alpha、視窗 #1E1E1E 非純黑、13px 內文 ---------- */
+[data-platform="mac"] {
+  --label: rgba(0,0,0,.847); --label-2: rgba(0,0,0,.498); --label-3: rgba(0,0,0,.259); --label-4: rgba(0,0,0,.098);
+  --separator: rgba(0,0,0,.098);
+  --bg: #FFFFFF; --bg-2: #F6F6F6; --bg-grouped: #F6F6F6; --bg-cell: #FFFFFF;
+  --link: #0068DA; --gray: #8E8E93;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) [data-platform="mac"] {
+    --label: rgba(255,255,255,.847); --label-2: rgba(255,255,255,.549); --label-3: rgba(255,255,255,.247); --label-4: rgba(255,255,255,.098);
+    --separator: rgba(255,255,255,.098);
+    --bg: #1E1E1E; --bg-2: #282828; --bg-grouped: #1E1E1E; --bg-cell: #282828;
+    --link: #419CFF; --gray: #98989D;
+  }
+}
+:root[data-theme="dark"] [data-platform="mac"] {
+  --label: rgba(255,255,255,.847); --label-2: rgba(255,255,255,.549); --label-3: rgba(255,255,255,.247); --label-4: rgba(255,255,255,.098);
+  --separator: rgba(255,255,255,.098);
+  --bg: #1E1E1E; --bg-2: #282828; --bg-grouped: #1E1E1E; --bg-cell: #282828;
+  --link: #419CFF; --gray: #98989D;
+}
+
+/* ---------- 增加對比 [HIG 高對比欄] ---------- */
+@media (prefers-contrast: more) {
+  :root:not([data-theme="dark"]) {
+    --red: #E9152D; --orange: #C55300; --yellow: #A16A00; --green: #008932;
+    --mint: #008575; --teal: #008198; --cyan: #007EAE; --blue: #1E6EF4;
+    --indigo: #564ADE; --purple: #B02FC2; --pink: #E7124D; --brown: #956D51; --gray: #6C6C70;
+    --label-2: rgba(60,60,67,.80); --label-3: rgba(60,60,67,.70); --label-4: rgba(60,60,67,.55);
+    --bg-2: #EBEBF0; --bg-grouped: #EBEBF0;
+    --glass-bg: var(--glass-bg-solid);
+  }
+}
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --red: #FF6165; --orange: #FFA056; --yellow: #FEDF43; --green: #4AD968;
+    --mint: #54DFCB; --teal: #3BDDEC; --cyan: #6DD9FF; --blue: #5CB8FF;
+    --indigo: #A7AAFF; --purple: #EA8DFF; --pink: #FF8AC4; --brown: #DBA679; --gray: #AEAEB2;
+    --label-2: rgba(235,235,245,.70); --label-3: rgba(235,235,245,.55); --label-4: rgba(235,235,245,.40);
+    --bg: #000000; --bg-2: #242426; --bg-grouped: #000000; --bg-cell: #242426;   /* 補回：否則沿用上一段淺色高對比的 #EBEBF0 → 白底白字 */
+    --glass-bg: var(--glass-bg-solid);
+  }
+}
+
+/* =====================================================================
+   基底
+   ===================================================================== */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-text);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto; line-break: strict;
+}
+:lang(zh) { quotes: "「" "」" "『" "』"; font-style: normal; letter-spacing: 0; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { text-wrap: pretty; }
+.num, .tabular { font-variant-numeric: tabular-nums; }
+
+/* =====================================================================
+   App 風
+   ===================================================================== */
+.app {
+  background: var(--bg-grouped); color: var(--label);
+  font: 400 17px/1.294 var(--font-text);          /* iOS body 17/22 */
+  min-height: 100vh;
+}
+.app[data-platform="mac"], [data-platform="mac"] .app {
+  font: 400 13px/1.23 var(--font-text);           /* macOS body 13/16 */
+}
+.app :lang(zh), .app:lang(zh) { line-height: 1.5; }
+.app a { color: var(--link); text-decoration: none; }
+.app a:hover { text-decoration: underline; }
+
+/* 字級 token（App）*/
+.t-large-title { font: 700 34px/1.2 var(--font-text); }   /* iOS Large Title 34（強調後 Bold） */
+.t-title       { font: 700 22px/1.27 var(--font-text); }
+.t-headline    { font: 600 17px/1.294 var(--font-text); }
+.t-subhead     { font: 400 15px/1.333 var(--font-text); }
+.t-footnote    { font: 400 13px/1.385 var(--font-text); color: var(--label-2); }
+.t-caption     { font: 400 12px/1.333 var(--font-text); color: var(--label-2); }
+[data-platform="mac"] .t-large-title { font: 700 26px/1.23 var(--font-text); }
+[data-platform="mac"] .t-title       { font: 700 17px/1.29 var(--font-text); }
+[data-platform="mac"] .t-headline    { font: 700 13px/1.23 var(--font-text); }  /* macOS Headline 是 Bold */
+[data-platform="mac"] .t-subhead     { font: 400 11px/1.27 var(--font-text); }
+[data-platform="mac"] .t-footnote,
+[data-platform="mac"] .t-caption     { font: 400 10px/1.3 var(--font-text); }
+
+/* ---------- Inset grouped list ---------- */
+.group-title  { font: 400 13px/1.385 var(--font-text); color: var(--label-2); margin: 24px 16px 6px; padding-inline: 16px; }
+.group-footer { font: 400 13px/1.385 var(--font-text); color: var(--label-2); margin: 6px 16px 0; padding-inline: 16px; }
+.group {
+  margin: 0 16px; padding: 0; list-style: none;
+  background: var(--bg-cell); border-radius: var(--r-group); overflow: hidden;
+}
+.row {
+  position: relative; display: flex; align-items: center; gap: 12px;
+  min-height: 44px; padding: 0 16px; box-sizing: border-box;   /* iOS 26 風可改 52px */
+  color: inherit; text-decoration: none;
+}
+.row + .row::before {                      /* 分隔線從內容起點開始，右側貼齊 */
+  content: ""; position: absolute; top: 0; right: 0; left: var(--row-inset, 16px);
+  border-top: .5px solid var(--separator);
+}
+.row.has-icon { --row-inset: 57px; }       /* 16 + 圖示 29 + 間距 12 */
+.row .icon { width: 29px; height: 29px; border-radius: 7px; flex: none; display: grid; place-items: center; color: #fff; }
+.row .title { flex: 1; min-width: 0; padding-block: 11px; }
+.row .detail { color: var(--label-2); }
+.row .chevron { width: 8px; height: 13px; color: var(--label-3); flex: none; }
+a.row:active, button.row:active { background: var(--fill-3); }
+button.row { width: 100%; border: 0; background: none; font: inherit; text-align: start; cursor: pointer; }
+[data-platform="mac"] .row { min-height: 32px; }
+[data-platform="mac"] .group { border-radius: 10px; box-shadow: inset 0 0 0 .5px var(--separator); }
+
+/* ---------- Switch：Safari 17.4+ 優先用原生 <input type="checkbox" switch> ---------- */
+input[type="checkbox"][switch] { accent-color: var(--switch-on); }
+.switch {
+  position: relative; flex: none; width: 51px; height: 31px; margin: 0;   /* iOS 經典 51×31 */
+  appearance: none; -webkit-appearance: none; cursor: pointer;
+  border-radius: 31px; background: var(--fill);
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.switch::after {
+  content: ""; position: absolute; top: 2px; left: 2px; width: 27px; height: 27px; border-radius: 50%;
+  background: #fff; box-shadow: 0 3px 8px rgba(0,0,0,.15), 0 1px 1px rgba(0,0,0,.16);
+  transition: transform 300ms var(--ease-spring);
+}
+.switch:checked { background: var(--switch-on); }
+.switch:checked::after { transform: translateX(20px); }
+.switch:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 50%, transparent); outline-offset: 2px; }
+.switch.mini { width: 32px; height: 18px; }                   /* macOS grouped form 用 mini [推論] */
+.switch.mini::after { width: 16px; height: 16px; top: 1px; left: 1px; }
+.switch.mini:checked::after { transform: translateX(14px); }
+
+/* ---------- Segmented control（iOS 高 31；macOS regular 24）---------- */
+.segmented {
+  display: inline-grid; grid-auto-flow: column; grid-auto-columns: 1fr;
+  padding: 2px; border-radius: 9px; background: var(--fill-3);
+}
+.segmented input { position: absolute; opacity: 0; pointer-events: none; }
+.segmented label {
+  display: grid; place-items: center; height: 27px; min-width: 60px; padding: 0 14px;
+  border-radius: 7px; font: 500 13px/1 var(--font-text); color: var(--label); cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.segmented input:checked + label { background: var(--seg-thumb); font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.segmented input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 1px; }
+[data-platform="mac"] .segmented label { height: 20px; border-radius: 5px; }
+
+/* ---------- 按鈕（App）---------- */
+.button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 34px; padding: 0 16px; border: 0; border-radius: var(--r-pill);
+  background: var(--fill-2); color: var(--accent); font: 600 15px/1 var(--font-text); cursor: pointer;
+  transition: filter var(--dur-fast) var(--ease-out);
+}
+.button:hover { filter: brightness(.96); }
+.button:active { filter: brightness(.9); }
+.button.prominent { background: var(--accent); color: var(--on-accent); }   /* 每畫面最多 1–2 個 */
+.button.destructive { color: var(--red); }
+.button:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 50%, transparent); outline-offset: 2px; }
+[data-platform="mac"] .button { min-height: 24px; padding: 0 12px; border-radius: 6px; font: 400 13px/1 var(--font-text);
+  background: var(--bg-cell); color: var(--label); box-shadow: 0 0 0 .5px rgba(0,0,0,.15), 0 1px 1px rgba(0,0,0,.06); }
+[data-platform="mac"] .button.prominent { background: var(--accent); color: #fff; box-shadow: none; }
+
+/* ---------- macOS 風 sidebar ---------- */
+.sidebar { width: 220px; padding: 10px; box-sizing: border-box; font: 400 13px/1.23 var(--font-text); background: var(--bg-2); }
+.sidebar h6 { font: 600 11px/1 var(--font-text); color: var(--label-3); margin: 14px 10px 6px; }
+.sidebar a { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 10px; border-radius: var(--r-small);
+  color: var(--label); text-decoration: none; }
+.sidebar a:hover { background: var(--fill-4); }
+.sidebar a[aria-current="page"] { background: var(--fill); font-weight: 600; }
+
+/* ---------- 毛玻璃（只給浮動導覽列／工具列）---------- */
+.glass-bar { position: sticky; top: 0; z-index: 100; background: var(--glass-bg-solid); }
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass-bar { background: var(--glass-bg); -webkit-backdrop-filter: var(--glass-filter); backdrop-filter: var(--glass-filter); }
+}
+@media (prefers-contrast: more), (prefers-reduced-transparency: reduce) {
+  .glass-bar { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom: 1px solid var(--separator); }
+}
+
+/* =====================================================================
+   行銷風 [apple.com]
+   ===================================================================== */
+.mk { background: var(--mk-bg); color: var(--mk-text); font: 400 17px/1.4706 var(--font-text); }
+.mk :lang(zh), .mk:lang(zh) { line-height: 1.6; }
+.mk a { color: var(--mk-link); text-decoration: none; }
+.mk a:hover { text-decoration: underline; }
+.container { width: min(var(--content-w), 100% - 2 * var(--gutter)); margin-inline: auto; }
+.section { padding-block: var(--section-pad); }
+.section--alt  { background: var(--mk-bg-alt); }
+.section--dark { background: #000; color: #F5F5F7; --mk-text-2: #86868B; --mk-link: #2997FF; }
+
+.t-display  { font: 600 80px/1.05 var(--font-text); }
+.t-hero     { font: 600 64px/1.0625 var(--font-text); }
+.t-headline-mk { font: 600 48px/1.0835 var(--font-text); }
+.t-eyebrow  { font: 600 28px/1.1429 var(--font-text); }
+.t-intro    { font: 400 21px/1.381 var(--font-text); color: var(--mk-text-2); }
+.t-body-sm  { font: 400 14px/1.4286 var(--font-text); }
+.t-fine     { font: 400 12px/1.3333 var(--font-text); color: var(--mk-text-2); }
+/* 系統字的英文標題負字距；中文一律 0 [實測] */
+.t-display:not(:lang(zh))      { letter-spacing: -0.016em; }
+.t-hero:not(:lang(zh))         { letter-spacing: -0.014em; }
+.t-headline-mk:not(:lang(zh))  { letter-spacing: -0.012em; }
+.t-display:lang(zh)  { line-height: 1.0875; }
+.t-eyebrow:lang(zh)  { line-height: 1.25; }
+
+@media (max-width: 1068px) {
+  :root { --content-w: 692px; --section-pad: 120px; }
+  .t-display { font-size: 64px; line-height: 1.0625; }
+  .t-hero { font-size: 48px; line-height: 1.0835; }
+  .t-headline-mk { font-size: 40px; line-height: 1.1; }
+}
+@media (max-width: 734px) {
+  :root { --content-w: 87.5%; --section-pad: 80px; }
+  .t-display { font-size: 48px; line-height: 1.0835; }
+  .t-hero { font-size: 40px; line-height: 1.1; }
+  .t-headline-mk { font-size: 32px; line-height: 1.125; }
+  .t-eyebrow { font-size: 21px; line-height: 1.19; }
+  .t-intro { font-size: 19px; line-height: 1.42; }
+}
+
+.btn {
+  display: inline-block; box-sizing: border-box; padding: 11px 21px;
+  border: 1px solid transparent; border-radius: var(--r-pill);
+  background: var(--mk-btn); color: #fff; font: 400 17px/1.1765 var(--font-text);
+  text-align: center; text-decoration: none; cursor: pointer;
+  transition: background-color 240ms var(--ease-apple);
+}
+.mk a.btn, a.btn { color: #fff; text-decoration: none; }
+.btn:hover  { background: var(--mk-btn-hover); }
+.btn:active { background: var(--mk-btn-active); }
+.btn--secondary, .mk a.btn--secondary { background: transparent; color: var(--mk-link); border-color: currentColor; }
+.btn--secondary:hover { background: var(--mk-link); color: #fff; border-color: var(--mk-link); }
+.btn--sm { padding: 8px 15px; font-size: 14px; }
+.btn:focus-visible { outline: 4px solid color-mix(in srgb, var(--mk-btn) 60%, transparent); outline-offset: 1px; }
+
+/* =====================================================================
+   減少動態
+   ===================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: .01ms !important; animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important; scroll-behavior: auto !important;
+  }
+}
