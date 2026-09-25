@@ -166,7 +166,7 @@ if #available(macOS 27, *) { glass.effectIsInteractive = true }  // 只給互動
 
 ### 3.1a 整窗玻璃的浮動面板（選單列 app 面板、HUD）
 
-> 證據範圍：**單一案例實測**（一個選單列監控 app 的整窗面板，macOS 27、1080p @1x 外接螢幕，2026-09-25，8 輪同螢幕截圖比對 Dock／桌面 widget）。原則部分可一般化；數字是該案例調出來的**起始值**，換 app 或螢幕要重量。
+> 證據範圍：**單一案例實測**（開源選單列監控 app [cool42](https://github.com/Okle42/cool42) 的整窗面板，macOS 27、1080p @1x 外接螢幕，2026-09-25，8 輪同螢幕截圖比對 Dock／桌面 widget）。原則部分可一般化；數字是 cool42 調出來的**起始值**，換 app 或螢幕要重量。實作可對照 cool42 `Sources/cool42-panel/PanelApp.swift` 的 `GlassStyle`／`TintedGlassView`。
 > 這是**刻意偏離 HIG**：官方說 clear 只用在影像／影片等媒體上方；整窗面板底下是任意桌面與視窗，官方沒涵蓋這個情境。
 
 **原則【實測，可一般化】**
@@ -177,11 +177,11 @@ if #available(macOS 27, *) { glass.effectIsInteractive = true }  // 只給互動
 - **玻璃上不要再鋪近實色卡片**（看起來像玻璃上疊塑膠板）。區段用分隔線或極淡分組底；說明文字用 `labelColor`／`secondaryLabelColor`（vibrancy），彩色只給大數字、圖表線、狀態點。
 - **邊緣光學系統的方向性**：Dock／widget 只有上下緣亮、左右幾乎沒有；四邊一圈均勻白框會像 HUD 外框。「增加對比」分支才畫完整框。
 - **視窗用 borderless**：`NSPanel` 帶 `.titled`＋`.utilityWindow` 會多一層系統外框與背景。改 `[.borderless, .nonactivatingPanel]`、`backgroundColor = .clear`，自己畫圓角，外觀變了呼叫 `invalidateShadow()`。這跟 HIG「panel 要有標題列」衝突，只適用 HUD 型面板（見 `macos-components.md` §4.1）。
-- **坑：玻璃直接當 `contentView`、裡面放 `NSHostingView` 時，hosting view 的 intrinsic size 會把內容撐得比視窗高**（該案例實測多 76pt，上緣被裁）。hosting view 用 `translatesAutoresizingMaskIntoConstraints = true`＋autoresizing，由視窗自己量內容高度設 frame。
+- **坑：玻璃直接當 `contentView`、裡面放 `NSHostingView` 時，hosting view 的 intrinsic size 會把內容撐得比視窗高**（cool42 實測多 76pt，上緣被裁）。hosting view 用 `translatesAutoresizingMaskIntoConstraints = true`＋autoresizing，由視窗自己量內容高度設 frame。
 - **驗收要看實機**：離屏渲染畫不出真的玻璃。在**同一張整螢幕截圖**裡並排面板與 Dock／widget，比底色、邊緣亮度、圓角；對比要在「深色桌布、白網頁、淺色外觀」三種背景都量。
 - **截圖會帶到個資**（行事曆事件、工作目錄、其他視窗內容），進 repo 或對外前要裁切或模糊，並用 OCR 掃一次。
 
-**案例起始值【實測，單一案例】**
+**cool42 起始值【實測，單一案例】**
 | 項目 | 值 | 量到的結果（0–255 底色亮度） |
 |---|---|---|
 | 深色 tint | `NSColor(srgbRed: 0, green: 0, blue: 0.02, alpha: 0.70)` | 星空底約 10、白網頁底約 50（Dock 約 12） |

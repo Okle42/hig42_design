@@ -11,6 +11,10 @@ Every rule in this skill carries an evidence tag. This file lists the public sou
 - **Web**: apple.com values were observed from public pages' computed styles (September 2026). Browser support from MDN browser-compat-data.
 - **Independent cross-checks**: two rounds by a separate reviewer; round 1 sampled 68 claims (10 wrong, all fixed), round 2 sampled 27 claims (8 wrong, all fixed).
 
+## Measured case: whole-window Liquid Glass panel
+
+- <https://github.com/Okle42/cool42> — open-source menu bar monitor (MIT). The whole-window glass panel measurements in `references/liquid-glass.md` §3.1a come from this app on macOS 27 (September 2026); see `Sources/cool42-panel/PanelApp.swift`.
+
 ## Typography, layout, hit targets, corner radius
 
 **Official / standards**

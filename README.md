@@ -86,7 +86,7 @@ The skill triggers on its own when you ask for Apple-platform UI or an Apple-sty
 
 - Strongest on macOS; iOS is solid, iPadOS/visionOS/watchOS/tvOS are thin.
 - iOS measurements come from the iOS 26.5 Simulator (the iOS 27 Simulator wasn't available).
-- The whole-window glass panel section is a single measured case and a deliberate deviation from the HIG.
+- The whole-window glass panel section is a single measured case ([cool42](https://github.com/Okle42/cool42)) and a deliberate deviation from the HIG.
 - Current as of September 2026. The next WWDC will change things.
 
 ## About Okle42

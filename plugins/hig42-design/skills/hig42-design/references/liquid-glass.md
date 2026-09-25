@@ -166,7 +166,7 @@ if #available(macOS 27, *) { glass.effectIsInteractive = true }  // only for bac
 
 ### 3.1a Floating panels that are entirely glass (menu bar app panels, HUDs)
 
-> Scope of evidence: **measured in a single case** (a menu bar monitoring app's whole-window panel, macOS 27, 1080p @1x external display, 2026-09-25, 8 rounds of same-screen screenshot comparison against the Dock / desktop widgets). The principles generalize; the numbers are **starting values** tuned for that case and must be re-measured for a different app or display.
+> Scope of evidence: **measured in a single case** (the whole-window panel of the open-source menu bar monitor [cool42](https://github.com/Okle42/cool42), macOS 27, 1080p @1x external display, 2026-09-25, 8 rounds of same-screen screenshot comparison against the Dock / desktop widgets). The principles generalize; the numbers are **starting values** tuned for cool42 and must be re-measured for a different app or display. Reference implementation: `GlassStyle` / `TintedGlassView` in cool42's `Sources/cool42-panel/PanelApp.swift`.
 > This is a **deliberate deviation from the HIG**: officially, clear is only for use over media such as images and video; a full-window panel sits over arbitrary desktops and windows, a scenario the official guidance doesn't cover.
 
 **Principles [Measured, generalizable]**
@@ -177,11 +177,11 @@ if #available(macOS 27, *) { glass.effectIsInteractive = true }  // only for bac
 - **Don't lay near-solid cards on top of the glass** (it looks like plastic sheets stacked on glass). Separate sections with dividers or a very faint grouping background; use `labelColor` / `secondaryLabelColor` (vibrancy) for descriptive text, and reserve color for large numbers, chart lines, and status dots.
 - **Directionality of the edge lighting**: the Dock and widgets are lit only along the top and bottom edges, with almost nothing on the left and right; an even white border around all four sides looks like a HUD frame. Draw a full border only in the Increase Contrast branch.
 - **Make the window borderless**: an `NSPanel` with `.titled` + `.utilityWindow` gets an extra layer of system frame and background. Use `[.borderless, .nonactivatingPanel]`, `backgroundColor = .clear`, draw the rounded corners yourself, and call `invalidateShadow()` when the appearance changes. This conflicts with the HIG's "panels should have a title bar" and applies only to HUD-style panels (see `macos-components.md` §4.1).
-- **Pitfall: when the glass is the `contentView` directly and holds an `NSHostingView`, the hosting view's intrinsic size stretches the content taller than the window** (76pt extra in the measured case, clipping the top edge). Give the hosting view `translatesAutoresizingMaskIntoConstraints = true` + autoresizing, and let the window measure the content height and set the frame itself.
+- **Pitfall: when the glass is the `contentView` directly and holds an `NSHostingView`, the hosting view's intrinsic size stretches the content taller than the window** (cool42 measured 76pt extra, clipping the top edge). Give the hosting view `translatesAutoresizingMaskIntoConstraints = true` + autoresizing, and let the window measure the content height and set the frame itself.
 - **Verify on real hardware**: offscreen rendering can't draw real glass. Place the panel side by side with the Dock / a widget in **the same full-screen screenshot** and compare base color, edge brightness, and corner radius; measure contrast over all three backgrounds: dark wallpaper, white web page, and Light appearance.
 - **Screenshots capture personal data** (calendar events, working directories, contents of other windows); crop or blur before committing them to a repo or sharing externally, and run an OCR pass over them.
 
-**Starting values from the measured case [Measured, single case]**
+**cool42 starting values [Measured, single case]**
 | Item | Value | Measured result (0–255 background luminance) |
 |---|---|---|
 | Dark tint | `NSColor(srgbRed: 0, green: 0, blue: 0.02, alpha: 0.70)` | ~10 over starfield, ~50 over white web page (Dock ~12) |

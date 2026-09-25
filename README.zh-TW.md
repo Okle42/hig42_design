@@ -88,7 +88,7 @@ iOS 26 和 macOS 26 把整套設計系統換掉了：系統色全換、加入 Li
 
 - macOS 最完整，iOS 夠用，iPadOS／visionOS／watchOS／tvOS 內容較少。
 - iOS 實測值來自 iOS 26.5 模擬器（當時沒有 iOS 27 模擬器）。
-- 「整窗玻璃浮動面板」那一節只有單一案例實測，而且是刻意偏離 HIG 的做法。
+- 「整窗玻璃浮動面板」那一節只有單一案例實測（[cool42](https://github.com/Okle42/cool42)），而且是刻意偏離 HIG 的做法。
 - 資料截至 2026 年 9 月，下一次 WWDC 之後需要更新。
 
 ## 關於 Okle42
