@@ -1,0 +1,23 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Repository checks (manifests, frontmatter, edition parity, links, leaks)
+        run: python3 tools/check.py
+      - name: Build .skill files
+        run: python3 tools/package.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skills
+          path: dist/*.skill
