@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions & ideas / 問題與想法
+    url: https://github.com/Okle42/hig42_design/discussions
+    about: Ask questions or share how you use the skill. 提問或分享你的用法。

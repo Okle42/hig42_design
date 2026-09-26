@@ -1,0 +1,8 @@
+{
+  "skill_name": "hig42-design",
+  "evals": [
+    {"id": 1, "name": "menubar-monitor", "prompt": "幫我用 SwiftUI 寫一個 macOS 選單列的 CPU 溫度監控小工具：點選單列圖示要看得到目前溫度、風扇轉速，溫度過高要有提醒門檻可以調，要有設定視窗。先用假資料就好，不用真的讀感測器。介面文字用繁體中文。把所有 .swift 檔存到指定的 outputs 資料夾，最後附一段說明你做了哪些設計決定。", "expected_output": "SwiftUI App：MenuBarExtra（template symbol、可移除開關）、Settings scene（grouped form、即時生效、⌘,）、系統語意色、text style、繁中 Apple 用語", "files": []},
+    {"id": 2, "name": "web-dashboard", "prompt": "做一個 Apple 風格的單頁 HTML：本機服務狀態儀表板，列出 6 個服務（名稱、狀態、延遲 ms、最後檢查時間），上方有總覽，要支援深色模式，介面繁體中文。存成 outputs 資料夾裡的 index.html（CSS 內嵌），最後附一段說明你做了哪些設計決定。", "expected_output": "App 風 HTML：系統字堆疊、lang zh-Hant-TW、color-scheme、grouped list 分隔線內縮、無 SF Symbols/SF 字型內嵌、不用紫色漸層/emoji、prefers-reduced-motion、中文不負字距、tabular-nums", "files": []},
+    {"id": 3, "name": "review-bad-code", "prompt": "幫我審查 inputs/BadSettings.swift 這段 macOS SwiftUI 程式碼，列出所有不符合 Apple 設計規範的地方（每條說明原因），然後寫出修正後的完整版本。審查報告存成 outputs/review.md，修正後程式碼存成 outputs/FixedSettings.swift。", "expected_output": "指出並修正：寫死字級/色碼、列表 cell 用 glassEffect、toolbar 齒輪設定鈕、兩個 prominent、alert 是/否與標題、刻意動作標 destructive、.bouncy、偏好設定→設定、確定/取消 → 即時生效、...→⋯、綠色小字對比、寫死深色背景、heavy 字重、continuous 圓角", "files": ["inputs/BadSettings.swift"]}
+  ]
+}

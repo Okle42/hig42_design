@@ -60,7 +60,7 @@ iOS 26 和 macOS 26 把整套設計系統換掉了：系統色全換、加入 Li
 | Apple 風服務儀表板（HTML） | 12/12 | 9/12 |
 | 審查一段有問題的 SwiftUI 設定畫面 | 13/13 | 13/13 |
 
-老實說：只有三題、每題只跑一次、評分項目是作者自己訂的。差別主要在細節，例如高對比模式、選單列圖示可以移除、中文不套負字距、不寫死舊的 `#007AFF`。代價是 token 和時間大約多一倍。
+老實說：只有三題、每題只跑一次、評分項目是作者自己訂的（題目與評分腳本在 [`evals/`](evals/)）。差別主要在細節，例如高對比模式、選單列圖示可以移除、中文不套負字距、不寫死舊的 `#007AFF`。代價是 token 和時間大約多一倍。
 
 | 有 skill | 沒 skill |
 |---|---|
@@ -83,6 +83,19 @@ iOS 26 和 macOS 26 把整套設計系統換掉了：系統色全換、加入 Li
 中英版擇一安裝就好，兩版內容相同，同時裝會搶同一類請求。
 
 裝好之後，只要請 Claude 做 Apple 平台介面、Apple 風網頁，或請它依 HIG 審查介面，它就會自動套用。
+
+## 專案結構
+
+```
+.claude-plugin/marketplace.json   「okle42」plugin marketplace（中英兩版）
+plugins/hig42-design/             英文版：skills/hig42-design/{SKILL.md, references/, assets/}
+plugins/hig42-design-zh-tw/       繁中版（結構相同）
+evals/                            A/B 測試題目、輸入檔與評分腳本
+tools/                            check.py（專案檢查）· package.py（打包 .skill）
+SOURCES.md · CHANGELOG.md · CONTRIBUTING.md
+```
+
+發現數值有錯或 API 過時？請開 [內容更正](https://github.com/Okle42/hig42_design/issues/new/choose) 並附來源，規則見 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 ## 限制
 

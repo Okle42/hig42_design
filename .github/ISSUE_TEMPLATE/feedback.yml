@@ -1,0 +1,23 @@
+name: Feedback / 使用回饋
+description: The skill gave bad advice, missed something, or triggered at the wrong time. skill 給了錯誤建議、漏了什麼，或觸發時機不對。
+labels: [feedback]
+body:
+  - type: textarea
+    id: prompt
+    attributes:
+      label: What you asked / 你的請求
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: What happened and what you expected / 實際結果與預期
+    validations:
+      required: true
+  - type: dropdown
+    id: edition
+    attributes:
+      label: Edition / 版本
+      options: [hig42-design (English), hig42-design-zh-tw (繁體中文)]
+    validations:
+      required: true

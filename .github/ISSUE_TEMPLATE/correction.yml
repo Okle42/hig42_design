@@ -1,0 +1,30 @@
+name: Correction / 內容更正
+description: A value, API name or rule is wrong or outdated. 數值、API 名稱或規則有錯或過時。
+labels: [correction]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Where / 位置
+      description: File and section, e.g. references/color-materials.md §2
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: What it says now / 目前寫的內容
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What it should say / 應該是
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence / 證據
+      description: Link to Apple docs or HIG, an SDK excerpt, or how you measured it (OS and Xcode version). 請附 Apple 文件連結、SDK 片段，或你的量測方式（系統與 Xcode 版本）。
+    validations:
+      required: true

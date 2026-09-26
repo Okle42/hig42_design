@@ -58,7 +58,7 @@ Same three prompts, run once with and once without the skill, graded on 12–13 
 | Apple-style service dashboard (HTML) | 12/12 | 9/12 |
 | Review a flawed SwiftUI settings screen | 13/13 | 13/13 |
 
-Honest caveats: three prompts, one run each, checks written by the author. The gains are in details — high-contrast support, a removable menu bar icon, no negative letter-spacing on CJK text, no outdated `#007AFF`. The skill roughly doubles tokens and time.
+Honest caveats: three prompts, one run each, checks written by the author (prompts and grader are in [`evals/`](evals/)). The gains are in details — high-contrast support, a removable menu bar icon, no negative letter-spacing on CJK text, no outdated `#007AFF`. The skill roughly doubles tokens and time.
 
 | With skill | Without skill |
 |---|---|
@@ -81,6 +81,19 @@ Honest caveats: three prompts, one run each, checks written by the author. The g
 Install one edition, not both — they cover the same ground and would compete for the same requests.
 
 The skill triggers on its own when you ask for Apple-platform UI or an Apple-style page, or when you ask for a HIG review.
+
+## Repository layout
+
+```
+.claude-plugin/marketplace.json   the "okle42" marketplace (both editions)
+plugins/hig42-design/             English edition — skills/hig42-design/{SKILL.md, references/, assets/}
+plugins/hig42-design-zh-tw/       Traditional Chinese edition (same structure)
+evals/                            A/B test prompts, input and grading script
+tools/                            check.py (repo checks) · package.py (builds .skill files)
+SOURCES.md · CHANGELOG.md · CONTRIBUTING.md
+```
+
+Found a wrong value or an outdated API? Open a [correction](https://github.com/Okle42/hig42_design/issues/new/choose) with a source — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Limits
 
