@@ -1,7 +1,7 @@
 # hig42-design
 
 **Evidence-based design guidelines for AI coding agents building on Apple platforms.**
-By [Okle42](https://github.com/Okle42) — follow for more AI tools that actually ship.
+Part of the **42 series** by [Okle42](https://github.com/Okle42) — follow for more AI tools that actually ship.
 A [Claude Code](https://claude.com/claude-code) skill covering SwiftUI / AppKit / UIKit on iOS/iPadOS 26–27 and macOS 26–27 (Liquid Glass), plus Apple-style web pages. Every value is tagged with where it came from.
 
 [繁體中文說明](README.zh-TW.md)
@@ -104,10 +104,10 @@ Found a wrong value or an outdated API? Open a [correction](https://github.com/O
 
 ## About Okle42
 
-[Okle42](https://github.com/Okle42) builds AI workflows that hold up in real work: researched, verified and measured, not just generated.
-This skill is an example. Research agents read around 400 sources in parallel, a separate agent cross-checked the result twice, and every code sample was compiled. The whole pipeline took about an hour of wall-clock time.
+Okle42 is the name I publish my tools under — the **42 series**. Each one is built with AI agents and shipped with its evidence: tests, measurements and independent cross-checks.
+This skill is an example: research agents read around 400 sources in parallel, a separate agent cross-checked the result twice, and every code sample was compiled. The whole run took about an hour of wall-clock time.
 
-⭐ Star this repo and follow [@Okle42](https://github.com/Okle42) to get the next tools. Questions and requests go in [Issues](https://github.com/Okle42/hig42_design/issues).
+⭐ Star this repo and follow [@Okle42](https://github.com/Okle42) to see the next tools. Questions and requests go in [Issues](https://github.com/Okle42/hig42_design/issues) or [Discussions](https://github.com/Okle42/hig42_design/discussions).
 
 ## Disclaimer
 

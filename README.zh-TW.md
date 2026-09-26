@@ -1,7 +1,7 @@
 # hig42-design
 
 **讓 AI 寫 Apple 平台介面時，照最新、查證過的設計規範來做。**
-由 [Okle42](https://github.com/Okle42) 製作，追蹤我們可以拿到更多實際能用的 AI 工具。
+[Okle42](https://github.com/Okle42) 的 **42 系列**作品之一，追蹤 @Okle42 就能看到更多實際能用的 AI 工具。
 這是一個 [Claude Code](https://claude.com/claude-code) skill，涵蓋 iOS/iPadOS 26–27、macOS 26–27（Liquid Glass）的 SwiftUI／AppKit／UIKit 介面，以及 Apple 風格網頁。每個數字都標明出處。
 
 [English](README.md)
@@ -106,10 +106,10 @@ SOURCES.md · CHANGELOG.md · CONTRIBUTING.md
 
 ## 關於 Okle42
 
-[Okle42](https://github.com/Okle42) 專做能在真實工作裡站得住的 AI 流程：有研究、有驗證、有數據，不只是生成。
-這個 skill 就是一個例子：多個研究 agent 平行讀了約 400 個來源，再由另一個 agent 獨立核對兩輪，每段程式碼都實際編譯過，整條流程的牆鐘時間大約一小時。
+Okle42 是我發表作品用的名字，這些作品統稱 **42 系列**。每一個都是跟 AI agent 一起做出來的，而且附上證據：測試、實測數據、獨立交叉核對。
+這個 skill 就是一個例子：多個研究 agent 平行讀了約 400 個來源，再由另一個 agent 獨立核對兩輪，每段程式碼都實際編譯過，整個過程的牆鐘時間大約一小時。
 
-⭐ 幫這個 repo 按星、追蹤 [@Okle42](https://github.com/Okle42)，下一個工具出來時就會看到。問題或需求請開 [Issue](https://github.com/Okle42/hig42_design/issues)。
+⭐ 幫這個 repo 按星、追蹤 [@Okle42](https://github.com/Okle42)，下一個工具出來時就會看到。問題或需求請開 [Issue](https://github.com/Okle42/hig42_design/issues) 或到 [Discussions](https://github.com/Okle42/hig42_design/discussions)。
 
 ## 聲明
 
