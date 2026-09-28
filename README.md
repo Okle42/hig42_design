@@ -74,6 +74,13 @@ Honest caveats: three prompts, one run each, checks written by the author (promp
 /plugin install hig42-design-zh-tw@okle42    # 繁體中文
 ```
 
+**Any agent (Claude Code, Codex, Cursor, …) via [skills](https://github.com/vercel-labs/skills)**
+
+```
+npx skills add Okle42/hig42_design --skill hig42-design          # English
+npx skills add Okle42/hig42_design --skill hig42-design-zh-tw    # 繁體中文
+```
+
 **Claude Code (manual)**: copy `plugins/hig42-design/skills/hig42-design` to `~/.claude/skills/hig42-design`.
 
 **Claude.ai**: download the `.skill` file from [Releases](https://github.com/Okle42/hig42_design/releases) and upload it in Claude.ai's Skills settings.

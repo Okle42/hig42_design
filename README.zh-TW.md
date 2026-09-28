@@ -76,6 +76,13 @@ iOS 26 和 macOS 26 把整套設計系統換掉了：系統色全換、加入 Li
 /plugin install hig42-design@okle42          # English
 ```
 
+**任何 AI 工具（Claude Code、Codex、Cursor⋯）用 [skills](https://github.com/vercel-labs/skills) 安裝**
+
+```
+npx skills add Okle42/hig42_design --skill hig42-design-zh-tw    # 繁體中文
+npx skills add Okle42/hig42_design --skill hig42-design          # English
+```
+
 **Claude Code（手動）**：把 `plugins/hig42-design-zh-tw/skills/hig42-design-zh-tw` 複製到 `~/.claude/skills/hig42-design-zh-tw`。
 
 **Claude.ai**：到 [Releases](https://github.com/Okle42/hig42_design/releases) 下載 `.skill` 檔，在 Claude.ai 的 Skills 設定上傳。
