@@ -116,3 +116,5 @@ This project is not affiliated with, authorized, sponsored, or endorsed by Apple
 ## License
 
 [MIT](LICENSE) © 2026 Okle42
+
+Apple, macOS, iOS, iPadOS, SF Symbols, Liquid Glass and related marks are trademarks of Apple Inc. This project is not affiliated with, authorized, sponsored, or endorsed by Apple Inc.

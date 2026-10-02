@@ -118,3 +118,5 @@ Okle42 是我發表作品用的名字，這些作品統稱 **42 系列**。每�
 ## 授權
 
 [MIT](LICENSE) © 2026 Okle42
+
+Apple、macOS、iOS、iPadOS、SF Symbols、Liquid Glass 及相關名稱為 Apple Inc. 的商標。本專案與 Apple Inc. 無關，未經其授權、贊助或背書。
